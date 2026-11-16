@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Student Dashboard - SkillLink{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Hi, {{ user.first_name|default:user.username }}!</h1>
+  <p class="muted">Student dashboard</p>
+</div>
+<div class="stats">
+  <div class="stat"><div class="num">0</div>Skills I can teach</div>
+  <div class="stat"><div class="num">0</div>Skills I want to learn</div>
+  <div class="stat"><div class="num">0</div>Connections</div>
+</div>
+<div class="card" style="margin-top:20px;">
+  <h2>Next up</h2>
+  <div class="coming">Skill management, search, and connection requests will be added in the next phases.</div>
+  <p><a class="btn" href="{% url 'accounts:profile' %}">View my profile</a></p>
+</div>
+{% endblock %}
