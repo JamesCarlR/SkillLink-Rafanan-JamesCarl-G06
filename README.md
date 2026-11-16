@@ -28,6 +28,7 @@ python manage.py createsuperuser   # this account gets the Admin role
 python manage.py runserver
 ```
 Open http://127.0.0.1:8000/
+python manage.py runserver 8080
 
 ## Roles
 | Role | How you get it | Dashboard |
