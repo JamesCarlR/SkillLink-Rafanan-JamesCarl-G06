@@ -1,25 +1,22 @@
 {% extends 'base.html' %}
-{% block title %}My Profile - SkillLink{% endblock %}
+{% block title %}Profile - SkillLink{% endblock %}
 {% block content %}
-<div class="card">
-  <div class="profile-head">
-    {% if profile_user.avatar %}
-      <img class="avatar" src="{{ profile_user.avatar.url }}" alt="Profile photo">
-    {% else %}
-      <div class="avatar">{{ profile_user.username|slice:":1"|upper }}</div>
-    {% endif %}
-    <div>
-      <h1 style="margin-bottom:4px;">{{ profile_user.get_full_name|default:profile_user.username }}</h1>
-      <span class="muted">@{{ profile_user.username }} &middot; {{ profile_user.get_role_display }}</span>
+<div class="page">
+  <div class="card profile">
+    <div class="pic">{{ user.username|first|upper }}</div>
+    <h2>{{ user.get_full_name|default:user.username }}</h2>
+    <p class="un">@{{ user.username }}</p>
+    <span class="role">{{ user.get_role_display }}</span>
+    {% if user.course_year %}<p class="meta">{{ user.course_year }}</p>{% endif %}
+    {% if user.bio %}<p class="bio">{{ user.bio }}</p>{% endif %}
+
+    <div class="stats">
+      <div><b>{{ teach_count }}</b><small>Can teach</small></div>
+      <div><b>{{ learn_count }}</b><small>Want to learn</small></div>
     </div>
+
+    <a href="{% url 'accounts:profile_edit' %}" class="btn btn-primary" style="margin-top:0">Edit Profile</a>
+    <a href="{% url 'password_reset' %}" class="btn btn-outline">Reset Password</a>
   </div>
-  <table>
-    <tr><th>Email</th><td>{{ profile_user.email }}</td></tr>
-    <tr><th>Contact number</th><td>{{ profile_user.contact_number|default:"-" }}</td></tr>
-    <tr><th>Course / Year</th><td>{{ profile_user.course_year|default:"-" }}</td></tr>
-    <tr><th>Bio</th><td>{{ profile_user.bio|default:"-"|linebreaksbr }}</td></tr>
-    <tr><th>Member since</th><td>{{ profile_user.date_joined|date:"M d, Y" }}</td></tr>
-  </table>
-  <p><a class="btn" href="{% url 'accounts:profile_edit' %}">Edit profile</a></p>
 </div>
 {% endblock %}
