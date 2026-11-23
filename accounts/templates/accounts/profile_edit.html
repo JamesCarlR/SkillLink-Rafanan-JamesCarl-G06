@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}Edit Profile - SkillLink{% endblock %}
 {% block content %}
-<div class="card narrow">
-  <h1>Edit profile</h1>
-  <form method="post" enctype="multipart/form-data" novalidate>
-    {% csrf_token %}
-    {% include 'accounts/_form_fields.html' %}
-    <button type="submit" class="btn">Save changes</button>
-    <a class="btn secondary" href="{% url 'accounts:profile' %}">Cancel</a>
-  </form>
+<div class="page">
+  <div class="card auth" style="max-width:560px">
+    <h2>Edit profile</h2>
+    <p class="sub">Keep your details up to date.</p>
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+      {% include 'accounts/_form_fields.html' %}
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+      <a class="cancel" href="{% url 'accounts:profile' %}">Cancel</a>
+    </form>
+  </div>
 </div>
 {% endblock %}

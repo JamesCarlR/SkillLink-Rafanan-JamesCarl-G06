@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}Register - SkillLink{% endblock %}
 {% block content %}
-<div class="card narrow">
-  <h1>Create an account</h1>
-  <form method="post" novalidate>
-    {% csrf_token %}
-    {% include 'accounts/_form_fields.html' %}
-    <button type="submit" class="btn">Register</button>
-  </form>
-  <p class="muted">Already have an account? <a href="{% url 'accounts:login' %}">Log in</a></p>
+<div class="page">
+  <div class="card auth" style="max-width:500px">
+    <h2>Create your account</h2>
+    <p class="sub">Join SkillLink and start connecting with other students.</p>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% include 'accounts/_form_fields.html' %}
+      <button type="submit" class="btn btn-primary">Create Account</button>
+    </form>
+    <p class="alt">Already have an account? <a href="{% url 'accounts:login' %}">Log In</a></p>
+  </div>
 </div>
 {% endblock %}

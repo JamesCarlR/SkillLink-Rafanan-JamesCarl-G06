@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Skill Board</h2>
+        <p>Share What You Know, Learn What You Need.</p>
+      </div>
+      <a href="{% url 'skill-create' %}" class="btn btn-green">+ Post a New Skill</a>
+    </div>
+    
+    <div class="grid">
+      {% for skill in skills %}
+        <div class="skill {% if skill.skill_type == 'TEACH' %}teach{% else %}learn{% endif %}">
+          <span class="badge">
+            {% if skill.skill_type == 'TEACH' %}I can teach{% else %}I want to learn{% endif %}
+          </span>
+          <h3>{{ skill.title }}</h3>
+          <p>{{ skill.description }}</p>
+          
+          <div class="foot">
+            <div class="user">
+              <span class="av">{{ skill.user.username|first|upper }}</span>
+              {{ skill.user.username }}
+            </div>
+            {% if skill.user == request.user %}
+            <div class="acts">
+              <a href="{% url 'skill-update' skill.pk %}">Edit</a>
+              <a href="{% url 'skill-delete' skill.pk %}" class="del">Delete</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #64748b;">
+            <h3>No skills posted yet.</h3>
+            <p>Be the first to share a skill with the community!</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
